@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="10dp"
+    tools:context=".MainActivity">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/imgClassificationLays"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="63dp"
+                android:layout_marginBottom="17dp"
+                android:backgroundTint="@color/black"
+                android:scaleType="fitXY"
+                android:src="@drawable/ic_launcher_background" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Image Classification"
+                android:textAlignment="center"
+                android:textColor="@color/black" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/imgPicturesLays"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="10dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="63dp"
+                android:layout_marginBottom="17dp"
+                android:backgroundTint="@color/black"
+                android:scaleType="fitXY"
+                android:src="@mipmap/ic_launcher" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Image Classification"
+                android:textAlignment="center"
+                android:textColor="@color/black" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/imgOBjDLays"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="63dp"
+                android:layout_marginBottom="17dp"
+                android:backgroundTint="@color/black"
+                android:scaleType="fitXY"
+                android:src="@drawable/ic_launcher_background" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="Object Detection"
+                android:textColor="@color/black" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/imgFaceDetectionLays"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="10dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="63dp"
+                android:layout_marginBottom="17dp"
+                android:backgroundTint="@color/black"
+                android:scaleType="fitXY"
+                android:src="@mipmap/ic_launcher" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Face Detection"
+                android:textAlignment="center"
+                android:textColor="@color/black" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/imgAClassificationLays"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="63dp"
+                android:layout_marginBottom="17dp"
+                android:backgroundTint="@color/black"
+                android:scaleType="fitXY"
+                android:src="@drawable/ic_launcher_background" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="Audio Classification"
+                android:textColor="@color/black" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/imgBirdSoundIdentifierLays"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="10dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="63dp"
+                android:layout_marginBottom="17dp"
+                android:backgroundTint="@color/black"
+                android:scaleType="fitXY"
+                android:src="@mipmap/ic_launcher" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Bird Sound Identifier"
+                android:textAlignment="center"
+                android:textColor="@color/black" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/imgSTDetectorLays"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="63dp"
+                android:layout_marginBottom="17dp"
+                android:backgroundTint="@color/black"
+                android:scaleType="fitXY"
+                android:src="@drawable/ic_launcher_background" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="Spam Text Detector "
+                android:textColor="@color/black" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/ays"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="10dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+            <!--    <ImageView-->
+            <!--        android:layout_width="match_parent"-->
+            <!--        android:layout_height="63dp"-->
+            <!--        android:backgroundTint="@color/black"-->
+            <!--        android:layout_marginBottom="17dp"-->
+            <!--        android:scaleType="fitXY"-->
+            <!--        android:src="@mipmap/ic_launcher"-->
+            <!--        />-->
+
+            <!--        <com.google.android.material.textview.MaterialTextView-->
+            <!--            android:layout_width="match_parent"-->
+            <!--            android:layout_height="wrap_content"-->
+            <!--            android:text="Bird Sound Identifier"-->
+            <!--            android:textAlignment="center"-->
+            <!--            android:textColor="@color/black"-->
+            <!--            />-->
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</androidx.appcompat.widget.LinearLayoutCompat>
