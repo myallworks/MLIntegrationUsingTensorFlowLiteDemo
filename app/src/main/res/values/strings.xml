@@ -13,4 +13,5 @@
     <string name="image_classification">Image Classification</string>
     <string name="no_face_detected">"No face detected. "</string>
     <string name="could_not_classify">"Could not Classify. "</string>
+    <string name="image_text_translation">Image Text Hindi Translation</string>
 </resources>

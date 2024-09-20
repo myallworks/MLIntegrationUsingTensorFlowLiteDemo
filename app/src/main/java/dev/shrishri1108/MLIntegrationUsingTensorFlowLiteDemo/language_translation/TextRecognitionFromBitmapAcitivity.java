@@ -44,18 +44,15 @@ public class TextRecognitionFromBitmapAcitivity extends ImageHelperActivity {
         InputImage inputImage = InputImage.fromBitmap(outputBitmap, 0);
 
         if (DefaultRecognizer != null) {
-                    DefaultRecognizer.process(inputImage)
-                            .addOnSuccessListener(visionText -> {
-                                // Task completed successfully
-                                // ..
+            DefaultRecognizer.process(inputImage)
+                    .addOnSuccessListener(visionText -> {
+                        // Task completed successfully
+                        runOnUiThread(() -> getMtV().setText(String.format("Text:\n%s", visionText.getText())));
 
-                                getMtV().setText(String.format("Text:\n%s", visionText.getText()));
-                                runOperationOnRecognisedText(visionText.getText());
-                            })
-                            .addOnFailureListener(
-                                    e -> {
-                                        Log.e(TAG, "onFailure: ", e);
-                                    });
+                        runOperationOnRecognisedText(visionText.getText());
+                    })
+                    .addOnFailureListener(
+                            e -> Log.e(TAG, "onFailure: ", e));
 
 //        DrawRectangleAroundTextArea(result.getResult(), outputBitmap);
 

@@ -38,14 +38,12 @@ public class TextLanguageIdentificationActivity extends TextRecognitionFromBitma
                                 Log.i(TAG, "Can't identify language.");
                             } else {
                                 Log.i(TAG, "Language: " + languageCode);
-                                getMtV().setText(MessageFormat.format("{0}\n Text Language: {1}", getMtV().getText(), languageCode));
+                                runOnUiThread(() -> getMtV().setText(MessageFormat.format("{0}\n Text Language: {1}", getMtV().getText(), languageCode)));
 
                                 runOperationAfterTextLanguageIdentification(recognisedText, languageCode);
                             }
                         })
                 .addOnFailureListener(
-                        e -> {
-                            Log.e(TAG, "onFailure: ", e);
-                        });
+                        e -> Log.e(TAG, "onFailure: ", e));
     }
 }
