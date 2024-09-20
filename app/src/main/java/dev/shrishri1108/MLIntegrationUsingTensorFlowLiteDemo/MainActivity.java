@@ -33,6 +33,11 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intents);
         });
 
+        binding.AudioClassificationLays.setOnClickListener(v -> {
+            Intent intents = new Intent(MainActivity.this, AudioClassificationActivity.class);
+            startActivity(intents);
+        });
+
         binding.TextTranslationLays.setOnClickListener(v -> {
             Intent intents = new Intent(MainActivity.this, TextTranslationAcitivity.class);
             startActivity(intents);

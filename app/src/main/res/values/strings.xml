@@ -14,4 +14,7 @@
     <string name="no_face_detected">"No face detected. "</string>
     <string name="could_not_classify">"Could not Classify. "</string>
     <string name="image_text_translation">Image Text Hindi Translation</string>
+    <string name="start_recording">Start Recording</string>
+    <string name="stop_recording">Stop Recording</string>
+    <string name="specifications">specifications</string>
 </resources>
