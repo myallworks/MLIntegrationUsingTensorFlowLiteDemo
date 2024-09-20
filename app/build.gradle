@@ -53,4 +53,10 @@ dependencies {
     implementation 'com.google.mlkit:face-detection:16.1.7'
     androidTestImplementation 'org.junit.jupiter:junit-jupiter:5.11.0'
 
+
+    // To recognize Latin script
+    implementation("com.google.mlkit:text-recognition:16.0.0")
+    implementation 'com.google.android.gms:play-services-mlkit-text-recognition:19.0.1'
+
+    
 }
