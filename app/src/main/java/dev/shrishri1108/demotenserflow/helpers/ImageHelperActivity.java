@@ -34,14 +34,13 @@ import java.util.List;
 
 import dev.shrishri1108.demotenserflow.Constant;
 import dev.shrishri1108.demotenserflow.databinding.ActivityImageHelperBinding;
-import dev.shrishri1108.demotenserflow.helpers.BoxWithLabel;
 
 public class ImageHelperActivity extends AppCompatActivity {
 
-    private ActivityImageHelperBinding bindings;
     private static final int REQ_PICK_IMG = 109;
     private static final int REQ_TAKE_IMG = 1013;
     private static final int REQ_PERMISSION_CODE = 1011;
+    private ActivityImageHelperBinding bindings;
     private File photoFile;
 
     @Override
@@ -51,10 +50,8 @@ public class ImageHelperActivity extends AppCompatActivity {
         setContentView(bindings.getRoot());
 
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (checkSelfPermission(android.Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)
-                requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, REQ_PERMISSION_CODE);
-        }
+        if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)
+            requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, REQ_PERMISSION_CODE);
 
     }
 
@@ -64,7 +61,10 @@ public class ImageHelperActivity extends AppCompatActivity {
 
         if (resultCode == RESULT_OK) {
             if (requestCode == REQ_PICK_IMG) {
-                Uri ur = data.getData();
+                Uri ur = null;
+                if (data != null) {
+                    ur = data.getData();
+                }
                 Bitmap Bitmap = loadImgFromUri(ur);
                 runClassification(Bitmap);
                 bindings.ivImage.setImageBitmap(Bitmap);
@@ -92,7 +92,6 @@ public class ImageHelperActivity extends AppCompatActivity {
             }
         } catch (IOException ex) {
             Log.e(Constant.TAG, "loadImgFromUri: ", ex);
-            ex.printStackTrace();
         }
 
         return bitmap;
@@ -138,12 +137,14 @@ public class ImageHelperActivity extends AppCompatActivity {
     protected ImageView getImageV() {
         return bindings.ivImage;
     }
-    protected void drawDetectionResult(List<BoxWithLabel> boxesList , Bitmap bitmap) {
-        Bitmap outputBitmap = bitmap.copy(Bitmap.Config.ARGB_8888, true );
+
+    protected void drawDetectionResult(List<BoxWithLabel> boxesList, Bitmap bitmap) {
+        Bitmap outputBitmap = bitmap.copy(Bitmap.Config.ARGB_8888, true);
         Canvas canvas = new Canvas(outputBitmap);
-        Paint penRect = new Paint();penRect.setColor(Color.RED);
+        Paint penRect = new Paint();
+        penRect.setColor(Color.RED);
         penRect.setStyle(Paint.Style.STROKE);
-        penRect.setStrokeWidth( 8f);
+        penRect.setStrokeWidth(8f);
 
         Paint penLabel = new Paint();
         penLabel.setColor(Color.YELLOW);
@@ -151,20 +152,20 @@ public class ImageHelperActivity extends AppCompatActivity {
         penLabel.setStrokeWidth(2f);
         penLabel.setTextSize(96f);
 
-        for (BoxWithLabel boxx: boxesList) {
+        for (BoxWithLabel boxx : boxesList) {
             canvas.drawRect(boxx.rect, penRect);
 
             // Rect
-            Rect labelSize = new Rect(0,0,0,0);
+            Rect labelSize = new Rect(0, 0, 0, 0);
             penLabel.getTextBounds(boxx.label, 0, boxx.label.length(), labelSize);
 
-            float fontSize = penLabel.getTextSize()* boxx.rect.width() / labelSize.width();
+            float fontSize = penLabel.getTextSize() * boxx.rect.width() / labelSize.width();
             if (fontSize < penLabel.getTextSize()) {
                 penLabel.setTextSize(fontSize);
             }
 
-            canvas.drawText(boxx.label, boxx.rect.left, boxx.rect.top + labelSize.height() + 1 , penLabel);
+            canvas.drawText(boxx.label, boxx.rect.left, boxx.rect.top + labelSize.height() + 1, penLabel);
         }
-            getImageV().setImageBitmap(outputBitmap);
+        getImageV().setImageBitmap(outputBitmap);
     }
 }

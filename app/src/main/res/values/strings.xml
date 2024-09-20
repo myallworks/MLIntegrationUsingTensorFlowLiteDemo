@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">DemoTenserFlow</string>
+    <string name="pick_gallery">Pick Gallery</string>
+    <string name="output">Output</string>
+    <string name="pick_camera">Pick Camera</string>
+    <string name="todo">TODO</string>
+    <string name="audio_classification">Audio Classification</string>
+    <string name="face_detection">Face Detection</string>
+    <string name="bird_sound_identifier">Bird Sound Identifier</string>
+    <string name="object_detection">Object Detection</string>
+    <string name="flower_classification">Flower Classification</string>
+    <string name="spam_text_detector">Spam Text Detector</string>
+    <string name="image_classification">Image Classification</string>
+    <string name="no_face_detected">"No face detected. "</string>
+    <string name="could_not_classify">"Could not Classify. "</string>
 </resources>

@@ -48,7 +48,7 @@ public class FlowerIdentificationActivity extends ImageHelperActivity {
                 }
                 getMtV().setText(builder.toString());
             } else {
-                getMtV().setText("Could not Classify. ");
+                getMtV().setText(R.string.could_not_classify);
             }
         });
     }

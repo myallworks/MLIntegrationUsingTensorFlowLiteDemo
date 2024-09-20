@@ -21,7 +21,7 @@ import dev.shrishri1108.demotenserflow.helpers.ImageHelperActivity;
 
 public class ObjectDetectionActivity extends ImageHelperActivity {
 
-    private ObjectDetector objectDetector ;
+    private ObjectDetector objectDetector;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,12 +32,10 @@ public class ObjectDetectionActivity extends ImageHelperActivity {
                     .enableMultipleObjects()
                     .enableClassification()
                     .build();
-            
-            objectDetector = ObjectDetection.getClient(options);        
-        }
-        catch (Exception exs) {
+
+            objectDetector = ObjectDetection.getClient(options);
+        } catch (Exception exs) {
             Log.e(Constant.TAG, "onCreate: ", exs);
-            exs.printStackTrace();
         }
     }
 
@@ -57,9 +55,8 @@ public class ObjectDetectionActivity extends ImageHelperActivity {
                                     .append(object.getLabels().get(0).getConfidence())
                                     .append("\n");
                             boxesList.add(new BoxWithLabel(object.getBoundingBox(), object.getLabels().get(0).getText()));
-                            Log.d(Constant.TAG, "onSuccess: Object Detecteds :  " + builder.toString());
-                        }
-                        else  {
+                            Log.d(Constant.TAG, "onSuccess: Object Detecteds :  " + builder);
+                        } else {
                             builder.append("Unknown")
                                     .append("\n");
                         }
@@ -67,7 +64,7 @@ public class ObjectDetectionActivity extends ImageHelperActivity {
                     drawDetectionResult(boxesList, bitmap);
                     getMtV().setText(builder.toString());
                 } else {
-                    getMtV().setText("Could not Classify. ");
+                    getMtV().setText(getString(R.string.could_not_classify));
                 }
             }
         });

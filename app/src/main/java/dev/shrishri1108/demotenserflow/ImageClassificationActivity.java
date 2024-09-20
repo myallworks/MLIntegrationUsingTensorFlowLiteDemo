@@ -1,7 +1,10 @@
 package dev.shrishri1108.demotenserflow;
 
+import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
+
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 
@@ -31,7 +34,7 @@ public class ImageClassificationActivity extends ImageHelperActivity {
                     .build()
             );
         } catch (Exception exe) {
-            exe.printStackTrace();
+            Log.e(TAG, "onCreate: ", exe);
         }
     }
 
@@ -51,7 +54,7 @@ public class ImageClassificationActivity extends ImageHelperActivity {
                     }
                     getMtV().setText(builder.toString());
                 } else {
-                    getMtV().setText("Could not Classify. ");
+                    getMtV().setText(getString(R.string.could_not_classify));
                 }
             }
         });

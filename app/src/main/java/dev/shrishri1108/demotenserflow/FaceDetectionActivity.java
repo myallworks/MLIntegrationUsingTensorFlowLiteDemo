@@ -13,8 +13,8 @@ import com.google.mlkit.vision.face.Face;
 import com.google.mlkit.vision.face.FaceDetection;
 import com.google.mlkit.vision.face.FaceDetector;
 import com.google.mlkit.vision.face.FaceDetectorOptions;
-import com.google.mlkit.vision.label.ImageLabel;
 
+import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,33 +40,31 @@ public class FaceDetectionActivity extends ImageHelperActivity {
 
     @Override
     protected void runClassification(Bitmap bitmap) {
-        Bitmap outputBitmap = bitmap.copy(Bitmap.Config.ARGB_8888, true );
+        Bitmap outputBitmap = bitmap.copy(Bitmap.Config.ARGB_8888, true);
         InputImage inputImage = InputImage.fromBitmap(outputBitmap, 0);
         faceDetector.process(inputImage).addOnSuccessListener(new OnSuccessListener<List<Face>>() {
-            @Override
-            public void onSuccess(@NonNull List<Face> faces) {
-                if (faces.isEmpty()) {
-                    getMtV().setText("No face detected. ");
-                }
-                else {
-                    List<BoxWithLabel> boxesList = new ArrayList<>();
-                    for (Face face: faces) {
-                        BoxWithLabel boxWithLabel = new BoxWithLabel(
-                                face.getBoundingBox(),
-                                face.getTrackingId() +" "
-                        );
-                        boxesList.add(boxWithLabel);
+                    @Override
+                    public void onSuccess(@NonNull List<Face> faces) {
+                        if (faces.isEmpty()) {
+                            getMtV().setText(R.string.no_face_detected);
+                        } else {
+                            List<BoxWithLabel> boxesList = new ArrayList<>();
+                            for (Face face : faces) {
+                                BoxWithLabel boxWithLabel = new BoxWithLabel(
+                                        face.getBoundingBox(),
+                                        face.getTrackingId() + " "
+                                );
+                                boxesList.add(boxWithLabel);
+                            }
+                            drawDetectionResult(boxesList, outputBitmap);
+                            getMtV().setText(MessageFormat.format("{0} has been detected. ", boxesList.size()));
+                        }
                     }
-                    drawDetectionResult(boxesList, outputBitmap);
-                    getMtV().setText(""+ boxesList.size()+ " has been detected. ");
-                }
-            }
 
-        })
+                })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        e.printStackTrace();
                         Log.e(Constant.TAG, "onFailure: ", e);
                     }
                 });
