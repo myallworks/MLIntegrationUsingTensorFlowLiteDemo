@@ -145,6 +145,7 @@
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="0dp"
+            android:id="@+id/AudioClassificationLays"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:orientation="vertical">
@@ -170,6 +171,7 @@
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="0dp"
             android:layout_height="match_parent"
+            android:id="@+id/BirdSoundDetectionLay"
             android:layout_marginStart="10dp"
             android:layout_weight="1"
             android:orientation="vertical">
@@ -236,6 +238,7 @@
                     android:layout_height="63dp"
                     android:backgroundTint="@color/black"
                     android:layout_marginBottom="17dp"
+                    android:contentDescription="@string/todo"
                     android:scaleType="fitXY"
                     android:src="@mipmap/ic_launcher"
                     />

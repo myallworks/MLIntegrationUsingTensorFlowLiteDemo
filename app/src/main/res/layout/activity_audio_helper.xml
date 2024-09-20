@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:padding="10dp"
+    android:layout_height="match_parent"
+    tools:context=".helpers.AudioHelperActivity">
+
+
+<com.google.android.material.textview.MaterialTextView
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    app:layout_constraintTop_toTopOf="parent"
+    android:id="@+id/mtvOpAudio"
+    android:text="@string/output"
+    android:textSize="15sp"
+    app:layout_constraintHeight_percent="0.4"
+    />
+
+<com.google.android.material.textview.MaterialTextView
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    app:layout_constraintTop_toBottomOf="@id/mtvOpAudio"
+    android:id="@+id/mtvSpecAudio"
+    android:layout_marginTop="10dp"
+    android:text="@string/specifications"
+    android:textSize="16sp"
+    app:layout_constraintHeight_percent="0.4"
+    />
+
+    <Button
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/btnStopRec"
+        android:text="@string/start_recording"
+        android:id="@+id/btnStartRec"
+        android:layout_marginHorizontal="20dp"
+        android:textAllCaps="false"
+        />
+
+    <Button
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@id/btnStartRec"
+        android:text="@string/stop_recording"
+        android:id="@+id/btnStopRec"
+        app:layout_constraintStart_toEndOf="@id/btnStartRec"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:enabled="false"
+        app:layout_constraintBottom_toBottomOf="@id/btnStartRec"
+        android:layout_marginHorizontal="20dp"
+        android:textAllCaps="false"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
