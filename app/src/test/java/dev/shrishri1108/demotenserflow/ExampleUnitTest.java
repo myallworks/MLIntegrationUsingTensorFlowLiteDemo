@@ -1,4 +1,4 @@
-package dev.shrishri1108.demotenserflow;
+package dev.shrishri1108.MLIntegrationUsingTensorFlowLiteDemo;
 
 import static org.junit.Assert.assertEquals;
 

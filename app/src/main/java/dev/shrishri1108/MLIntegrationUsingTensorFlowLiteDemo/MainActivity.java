@@ -1,4 +1,4 @@
-package dev.shrishri1108.demotenserflow;
+package dev.shrishri1108.MLIntegrationUsingTensorFlowLiteDemo;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -6,7 +6,7 @@ import android.view.LayoutInflater;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import dev.shrishri1108.demotenserflow.databinding.ActivityMainBinding;
+import dev.shrishri1108.MLIntegrationUsingTensorFlowLiteDemo.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
 

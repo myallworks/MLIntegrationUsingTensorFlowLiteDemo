@@ -3,11 +3,11 @@ plugins {
 }
 
 android {
-    namespace 'dev.shrishri1108.demotenserflow'
+    namespace 'dev.shrishri1108.MLIntegrationUsingTensorFlowLiteDemo'
     compileSdk 35
 
     defaultConfig {
-        applicationId "dev.shrishri1108.demotenserflow"
+        applicationId "dev.shrishri1108.MLIntegrationUsingTensorFlowLiteDemo"
         minSdk 23
         targetSdk 35
         versionCode 1

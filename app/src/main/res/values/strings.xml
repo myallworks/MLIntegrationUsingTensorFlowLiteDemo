@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">DemoTenserFlow</string>
+    <string name="app_name">ML Integration using TensorFlowLite</string>
     <string name="pick_gallery">Pick Gallery</string>
     <string name="output">Output</string>
     <string name="pick_camera">Pick Camera</string>

@@ -1,4 +1,4 @@
-package dev.shrishri1108.demotenserflow;
+package dev.shrishri1108.MLIntegrationUsingTensorFlowLiteDemo;
 
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -11,7 +11,7 @@ import com.google.mlkit.vision.label.ImageLabeler;
 import com.google.mlkit.vision.label.ImageLabeling;
 import com.google.mlkit.vision.label.custom.CustomImageLabelerOptions;
 
-import dev.shrishri1108.demotenserflow.helpers.ImageHelperActivity;
+import dev.shrishri1108.MLIntegrationUsingTensorFlowLiteDemo.helpers.ImageHelperActivity;
 
 public class FlowerIdentificationActivity extends ImageHelperActivity {
 

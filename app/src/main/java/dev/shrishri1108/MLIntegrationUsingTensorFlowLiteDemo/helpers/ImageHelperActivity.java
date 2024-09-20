@@ -1,4 +1,4 @@
-package dev.shrishri1108.demotenserflow.helpers;
+package dev.shrishri1108.MLIntegrationUsingTensorFlowLiteDemo.helpers;
 
 import static java.text.DateFormat.getDateTimeInstance;
 
@@ -34,8 +34,8 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
-import dev.shrishri1108.demotenserflow.Constant;
-import dev.shrishri1108.demotenserflow.databinding.ActivityImageHelperBinding;
+import dev.shrishri1108.MLIntegrationUsingTensorFlowLiteDemo.Constant;
+import dev.shrishri1108.MLIntegrationUsingTensorFlowLiteDemo.databinding.ActivityImageHelperBinding;
 
 public class ImageHelperActivity extends AppCompatActivity {
 

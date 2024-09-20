@@ -1,4 +1,4 @@
-package dev.shrishri1108.demotenserflow.helpers;
+package dev.shrishri1108.MLIntegrationUsingTensorFlowLiteDemo.helpers;
 
 import android.graphics.Rect;
 

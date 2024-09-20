@@ -1,4 +1,4 @@
-package dev.shrishri1108.demotenserflow;
+package dev.shrishri1108.MLIntegrationUsingTensorFlowLiteDemo;
 
 import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
 
@@ -12,7 +12,7 @@ import com.google.mlkit.vision.label.ImageLabeler;
 import com.google.mlkit.vision.label.ImageLabeling;
 import com.google.mlkit.vision.label.defaults.ImageLabelerOptions;
 
-import dev.shrishri1108.demotenserflow.helpers.ImageHelperActivity;
+import dev.shrishri1108.MLIntegrationUsingTensorFlowLiteDemo.helpers.ImageHelperActivity;
 
 public class ImageClassificationActivity extends ImageHelperActivity {
 

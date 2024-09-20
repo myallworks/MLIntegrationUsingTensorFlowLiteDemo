@@ -1,4 +1,4 @@
-package dev.shrishri1108.demotenserflow;
+package dev.shrishri1108.MLIntegrationUsingTensorFlowLiteDemo;
 
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -14,8 +14,8 @@ import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-import dev.shrishri1108.demotenserflow.helpers.BoxWithLabel;
-import dev.shrishri1108.demotenserflow.helpers.ImageHelperActivity;
+import dev.shrishri1108.MLIntegrationUsingTensorFlowLiteDemo.helpers.BoxWithLabel;
+import dev.shrishri1108.MLIntegrationUsingTensorFlowLiteDemo.helpers.ImageHelperActivity;
 
 public class FaceDetectionActivity extends ImageHelperActivity {
     private FaceDetector faceDetector;
