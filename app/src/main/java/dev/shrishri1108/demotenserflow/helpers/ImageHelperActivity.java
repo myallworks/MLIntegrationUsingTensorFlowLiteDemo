@@ -1,6 +1,9 @@
 package dev.shrishri1108.demotenserflow.helpers;
 
+import static java.text.DateFormat.getDateTimeInstance;
+
 import android.Manifest;
+import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -20,7 +23,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 
-import androidx.annotation.Nullable;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
 
@@ -28,8 +32,6 @@ import com.google.android.material.textview.MaterialTextView;
 
 import java.io.File;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 import dev.shrishri1108.demotenserflow.Constant;
@@ -37,11 +39,10 @@ import dev.shrishri1108.demotenserflow.databinding.ActivityImageHelperBinding;
 
 public class ImageHelperActivity extends AppCompatActivity {
 
-    private static final int REQ_PICK_IMG = 109;
-    private static final int REQ_TAKE_IMG = 1013;
-    private static final int REQ_PERMISSION_CODE = 1011;
     private ActivityImageHelperBinding bindings;
     private File photoFile;
+    private ActivityResultLauncher<Intent> galleryLauncher;
+    private ActivityResultLauncher<Intent> cameraLauncher;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,31 +50,31 @@ public class ImageHelperActivity extends AppCompatActivity {
         bindings = ActivityImageHelperBinding.inflate(LayoutInflater.from(this));
         setContentView(bindings.getRoot());
 
+        ActivityResultLauncher<String> requestPermissionLauncher =
+                registerForActivityResult(new ActivityResultContracts.RequestPermission(), isGranted -> {
+                    // Permission is granted, you can now use the camera
+                    // Permission denied
+                });
 
-        if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)
-            requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, REQ_PERMISSION_CODE);
+        galleryLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
+            if (result.getResultCode() == Activity.RESULT_OK && result.getData() != null) {
 
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (resultCode == RESULT_OK) {
-            if (requestCode == REQ_PICK_IMG) {
-                Uri ur = null;
-                if (data != null) {
-                    ur = data.getData();
-                }
-                Bitmap Bitmap = loadImgFromUri(ur);
+                Bitmap Bitmap = loadImgFromUri(result.getData().getData());
                 runClassification(Bitmap);
                 bindings.ivImage.setImageBitmap(Bitmap);
-            } else if (requestCode == REQ_TAKE_IMG) {
+            }
+        });
+
+        cameraLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
+            if (result.getResultCode() == Activity.RESULT_OK && result.getData() != null) {
+
                 Bitmap bitmap = BitmapFactory.decodeFile(photoFile.getAbsolutePath());
                 runClassification(bitmap);
                 bindings.ivImage.setImageBitmap(bitmap);
             }
-        }
+        });
+        if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)
+            requestPermissionLauncher.launch(Manifest.permission.READ_EXTERNAL_STORAGE);
 
     }
 
@@ -103,31 +104,27 @@ public class ImageHelperActivity extends AppCompatActivity {
         // Create a file to share with Camera
         photoFile = createPhotoFile();
 
-        Uri fileUri = FileProvider.getUriForFile(this, "com.iago.fileprovider", photoFile);
+        Uri fileUri = FileProvider.getUriForFile(this, getPackageName(), photoFile);
         // create an Intent
         Intent intents = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         intents.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
 
-        //startActivityForResult( )
-        startActivityForResult(intents, REQ_TAKE_IMG);
+        cameraLauncher.launch(intents);
     }
 
     public void pickFromGallery(View view) {
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
         intent.setType("image/*");
-        startActivityForResult(intent, REQ_PICK_IMG);
+
+        galleryLauncher.launch(intent);
     }
 
     private File createPhotoFile() {
         File photoFile = new File(getExternalFilesDir(Environment.DIRECTORY_PICTURES), "ML_IMAGE_HELPER");
 
-        if (!photoFile.exists()) {
-            photoFile.mkdirs();
-        }
+        if (!photoFile.exists()) photoFile.mkdirs();
 
-        String name = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-        File files = new File(photoFile.getPath() + File.separator + name);
-        return files;
+        return new File(photoFile.getPath() + File.separator + getDateTimeInstance());
     }
 
     protected MaterialTextView getMtV() {

@@ -4,9 +4,6 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
 
-import androidx.annotation.NonNull;
-
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.mlkit.vision.common.InputImage;
 import com.google.mlkit.vision.objects.DetectedObject;
 import com.google.mlkit.vision.objects.ObjectDetection;
@@ -42,30 +39,27 @@ public class ObjectDetectionActivity extends ImageHelperActivity {
     @Override
     protected void runClassification(Bitmap bitmap) {
         InputImage inputImage = InputImage.fromBitmap(bitmap, 0);
-        objectDetector.process(inputImage).addOnSuccessListener(new OnSuccessListener<List<DetectedObject>>() {
-            @Override
-            public void onSuccess(@NonNull List<DetectedObject> detectedObjects) {
-                if (!detectedObjects.isEmpty()) {
-                    StringBuilder builder = new StringBuilder();
-                    List<BoxWithLabel> boxesList = new ArrayList<>();
-                    for (DetectedObject object : detectedObjects) {
-                        if (!object.getLabels().isEmpty()) {
-                            builder.append(object.getLabels().get(0).getText())
-                                    .append(" : ")
-                                    .append(object.getLabels().get(0).getConfidence())
-                                    .append("\n");
-                            boxesList.add(new BoxWithLabel(object.getBoundingBox(), object.getLabels().get(0).getText()));
-                            Log.d(Constant.TAG, "onSuccess: Object Detecteds :  " + builder);
-                        } else {
-                            builder.append("Unknown")
-                                    .append("\n");
-                        }
+        objectDetector.process(inputImage).addOnSuccessListener(detectedObjects -> {
+            if (!detectedObjects.isEmpty()) {
+                StringBuilder builder = new StringBuilder();
+                List<BoxWithLabel> boxesList = new ArrayList<>();
+                for (DetectedObject object : detectedObjects) {
+                    if (!object.getLabels().isEmpty()) {
+                        builder.append(object.getLabels().get(0).getText())
+                                .append(" : ")
+                                .append(object.getLabels().get(0).getConfidence())
+                                .append("\n");
+                        boxesList.add(new BoxWithLabel(object.getBoundingBox(), object.getLabels().get(0).getText()));
+                        Log.d(Constant.TAG, "onSuccess: Object Detecteds :  " + builder);
+                    } else {
+                        builder.append("Unknown")
+                                .append("\n");
                     }
-                    drawDetectionResult(boxesList, bitmap);
-                    getMtV().setText(builder.toString());
-                } else {
-                    getMtV().setText(getString(R.string.could_not_classify));
                 }
+                drawDetectionResult(boxesList, bitmap);
+                getMtV().setText(builder.toString());
+            } else {
+                getMtV().setText(getString(R.string.could_not_classify));
             }
         });
     }

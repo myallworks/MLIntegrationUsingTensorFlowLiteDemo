@@ -3,7 +3,6 @@ package dev.shrishri1108.demotenserflow;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -15,7 +14,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        dev.shrishri1108.demotenserflow.databinding.ActivityMainBinding binding = ActivityMainBinding.inflate(LayoutInflater.from(this));
+        ActivityMainBinding binding = ActivityMainBinding.inflate(LayoutInflater.from(this));
         setContentView(binding.getRoot());
 
         binding.imgClassificationLays.setOnClickListener(v -> {
@@ -23,12 +22,9 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intents);
         });
 
-        binding.imgPicturesLays.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intents = new Intent(MainActivity.this, FlowerIdentificationActivity.class);
-                startActivity(intents);
-            }
+        binding.imgPicturesLays.setOnClickListener(v -> {
+            Intent intents = new Intent(MainActivity.this, FlowerIdentificationActivity.class);
+            startActivity(intents);
         });
 
         binding.imgFaceDetectionLays.setOnClickListener(v -> {

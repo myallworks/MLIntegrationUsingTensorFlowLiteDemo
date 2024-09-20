@@ -4,10 +4,6 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
 
-import androidx.annotation.NonNull;
-
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.mlkit.vision.common.InputImage;
 import com.google.mlkit.vision.face.Face;
 import com.google.mlkit.vision.face.FaceDetection;
@@ -42,31 +38,22 @@ public class FaceDetectionActivity extends ImageHelperActivity {
     protected void runClassification(Bitmap bitmap) {
         Bitmap outputBitmap = bitmap.copy(Bitmap.Config.ARGB_8888, true);
         InputImage inputImage = InputImage.fromBitmap(outputBitmap, 0);
-        faceDetector.process(inputImage).addOnSuccessListener(new OnSuccessListener<List<Face>>() {
-                    @Override
-                    public void onSuccess(@NonNull List<Face> faces) {
-                        if (faces.isEmpty()) {
-                            getMtV().setText(R.string.no_face_detected);
-                        } else {
-                            List<BoxWithLabel> boxesList = new ArrayList<>();
-                            for (Face face : faces) {
-                                BoxWithLabel boxWithLabel = new BoxWithLabel(
-                                        face.getBoundingBox(),
-                                        face.getTrackingId() + " "
-                                );
-                                boxesList.add(boxWithLabel);
-                            }
-                            drawDetectionResult(boxesList, outputBitmap);
-                            getMtV().setText(MessageFormat.format("{0} has been detected. ", boxesList.size()));
+        faceDetector.process(inputImage).addOnSuccessListener(faces -> {
+                    if (faces.isEmpty()) {
+                        getMtV().setText(R.string.no_face_detected);
+                    } else {
+                        List<BoxWithLabel> boxesList = new ArrayList<>();
+                        for (Face face : faces) {
+                            BoxWithLabel boxWithLabel = new BoxWithLabel(
+                                    face.getBoundingBox(),
+                                    face.getTrackingId() + " "
+                            );
+                            boxesList.add(boxWithLabel);
                         }
+                        drawDetectionResult(boxesList, outputBitmap);
+                        getMtV().setText(MessageFormat.format("{0} has been detected. ", boxesList.size()));
                     }
-
                 })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.e(Constant.TAG, "onFailure: ", e);
-                    }
-                });
+                .addOnFailureListener(e -> Log.e(Constant.TAG, "onFailure: ", e));
     }
 }
