@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import androidx.appcompat.app.AppCompatActivity;
 
 import dev.shrishri1108.MLIntegrationUsingTensorFlowLiteDemo.databinding.ActivityMainBinding;
+import dev.shrishri1108.MLIntegrationUsingTensorFlowLiteDemo.language_translation.TextTranslationAcitivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -29,6 +30,11 @@ public class MainActivity extends AppCompatActivity {
 
         binding.imgFaceDetectionLays.setOnClickListener(v -> {
             Intent intents = new Intent(MainActivity.this, FaceDetectionActivity.class);
+            startActivity(intents);
+        });
+
+        binding.TextTranslationLays.setOnClickListener(v -> {
+            Intent intents = new Intent(MainActivity.this, TextTranslationAcitivity.class);
             startActivity(intents);
         });
 
