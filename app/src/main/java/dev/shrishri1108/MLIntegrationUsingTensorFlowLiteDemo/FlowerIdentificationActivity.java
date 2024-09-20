@@ -1,4 +1,4 @@
-package dev.shrishri1108.demotenserflow;
+package dev.shrishri1108.MLIntegrationUsingTensorFlowLiteDemo;
 
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -11,7 +11,7 @@ import com.google.mlkit.vision.label.ImageLabeler;
 import com.google.mlkit.vision.label.ImageLabeling;
 import com.google.mlkit.vision.label.custom.CustomImageLabelerOptions;
 
-import dev.shrishri1108.demotenserflow.helpers.ImageHelperActivity;
+import dev.shrishri1108.MLIntegrationUsingTensorFlowLiteDemo.helpers.ImageHelperActivity;
 
 public class FlowerIdentificationActivity extends ImageHelperActivity {
 
@@ -38,7 +38,9 @@ public class FlowerIdentificationActivity extends ImageHelperActivity {
     protected void runClassification(Bitmap bitmap) {
         InputImage inputImage = InputImage.fromBitmap(bitmap, 0);
         imageLabeler.process(inputImage).addOnSuccessListener(imageLabels -> {
-            if (imageLabels.size() > 0) {
+            if (imageLabels.isEmpty()) {
+                getMtV().setText(R.string.could_not_classify);
+            } else {
                 StringBuilder builder = new StringBuilder();
                 for (ImageLabel labels : imageLabels) {
                     builder.append(labels.getText())
@@ -47,8 +49,6 @@ public class FlowerIdentificationActivity extends ImageHelperActivity {
                             .append("\n");
                 }
                 getMtV().setText(builder.toString());
-            } else {
-                getMtV().setText("Could not Classify. ");
             }
         });
     }

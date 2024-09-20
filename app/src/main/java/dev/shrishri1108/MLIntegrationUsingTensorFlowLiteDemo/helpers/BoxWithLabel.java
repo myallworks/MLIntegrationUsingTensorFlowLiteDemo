@@ -1,10 +1,10 @@
-package dev.shrishri1108.demotenserflow.helpers;
+package dev.shrishri1108.MLIntegrationUsingTensorFlowLiteDemo.helpers;
 
 import android.graphics.Rect;
 
 public class BoxWithLabel {
     public Rect rect;
-    public String label ;
+    public String label;
 
     public BoxWithLabel(Rect rect, String label) {
         this.rect = rect;

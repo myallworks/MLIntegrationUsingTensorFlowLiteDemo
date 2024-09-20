@@ -1,8 +1,9 @@
-package dev.shrishri1108.demotenserflow;
+package dev.shrishri1108.MLIntegrationUsingTensorFlowLiteDemo;
+
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-import static org.junit.Assert.*;
 
 /**
  * Example local unit test, which will execute on the development machine (host).

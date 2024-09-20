@@ -3,13 +3,13 @@ plugins {
 }
 
 android {
-    namespace 'dev.shrishri1108.demotenserflow'
-    compileSdk 34
+    namespace 'dev.shrishri1108.MLIntegrationUsingTensorFlowLiteDemo'
+    compileSdk 35
 
     defaultConfig {
-        applicationId "dev.shrishri1108.demotenserflow"
-        minSdk 21
-        targetSdk 34
+        applicationId "dev.shrishri1108.MLIntegrationUsingTensorFlowLiteDemo"
+        minSdk 23
+        targetSdk 35
         versionCode 1
         versionName "1.0"
 
@@ -33,23 +33,24 @@ android {
 
 dependencies {
 
-    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'androidx.appcompat:appcompat:1.7.0'
     implementation 'com.google.android.material:material:1.12.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.ext:junit:1.2.1'
 
-    implementation ("com.google.mlkit:image-labeling:17.0.5")
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+    implementation ("com.google.mlkit:image-labeling:17.0.9")
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.6.1'
 
     // Custom Image classification
-    implementation 'com.google.mlkit:image-labeling-custom:16.3.1'
+    implementation 'com.google.mlkit:image-labeling-custom:17.0.3'
 
     // Object Detection Library
 
-    implementation 'com.google.mlkit:object-detection:16.2.6'
+    implementation 'com.google.mlkit:object-detection:17.0.2'
 
     // Face Detection
-    implementation 'com.google.mlkit:face-detection:16.1.2'
+    implementation 'com.google.mlkit:face-detection:16.1.7'
+    androidTestImplementation 'org.junit.jupiter:junit-jupiter:5.11.0'
 
 }
