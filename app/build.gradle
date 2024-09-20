@@ -53,10 +53,10 @@ dependencies {
     implementation 'com.google.mlkit:face-detection:16.1.7'
     androidTestImplementation 'org.junit.jupiter:junit-jupiter:5.11.0'
 
-
-    // To recognize Latin script
-    implementation("com.google.mlkit:text-recognition:16.0.0")
-    implementation 'com.google.android.gms:play-services-mlkit-text-recognition:19.0.1'
-
-    
+    // To recognize Devanagari script
+    implementation 'com.google.android.gms:play-services-mlkit-text-recognition-devanagari:16.0.1'
+//    You can use ML Kit to identify the language of a string of text.
+    // Use this dependency to use the dynamically downloaded model in Google Play Services
+    implementation 'com.google.mlkit:language-id:17.0.6'
+    implementation 'com.google.android.gms:play-services-mlkit-language-id:17.0.0'
 }
